@@ -22,15 +22,12 @@ export class PokemonListService {
   getImages(pokemons:any): Observable<any>{
     let result:any;
     let listLength = pokemons.length;
-    
+    this.pokeList = [];
     for(let i = 0;i<pokemons.length;i++){
         //this.getImageService(pokemons[i].url,length,i);
         this.pokeList.push(this.http.get<IPokemon>(pokemons[i].url).pipe(tap(res => res)));  
     }
 
-    forkJoin(this.pokeList).subscribe(allResults => {
-        let pokemonList = allResults;
-    });
     return this.pokeList;
   }
  

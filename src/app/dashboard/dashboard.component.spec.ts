@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardComponent } from './dashboard.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -34,5 +34,29 @@ describe('DashboardComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should render title in a h3 tag', async(() => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h3').textContent).toContain('Height:');
+  }));
+  
+  it("should contain background image", () => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('img').src).toContain("/assets/logo.jpg");
+  });
+  it('should have sort param as name by default', async(() => {
+    component.SortbyParam = 'name';
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(fixture.componentInstance.SortbyParam).toContain('name');
+  }));
+  
+  it("should have sort order as ascending by default", () => {
+    component.SortDirection = 'asc';
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(fixture.componentInstance.SortDirection).toContain('asc');
   });
 });

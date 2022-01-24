@@ -87,7 +87,7 @@ constructor(private http: HttpClient, private store: Store<State>, private route
         let observableList:any = this.pokemonListService.getImages(pokemons);
           forkJoin(observableList).subscribe((allResults:any) => {
             let pokemonDetails:any, abilities:any, ability:string;
-            //pokemonDetails = allResults;
+            this.rawData = allResults;
             this.pokemonList = allResults;
             for(let i =0;i<allResults.length;i++){
               this.pokemonList[i].image = allResults[i].sprites.other["official-artwork"].front_default;
@@ -97,9 +97,11 @@ constructor(private http: HttpClient, private store: Store<State>, private route
                 ability += abilities[i].ability.name + ", ";
               }
               this.pokemonList[i].ability = ability.substring(0,ability.length-2);
+              this.rawData[i].ability = ability.substring(0,ability.length-2);
               let type = this.pokemonList[i].types[0].type.name;
               this.pokemonList[i].type = Constants.type[type];
             }
+            this.onSearchFilter();
         });
       });
  }
@@ -166,6 +168,7 @@ pokemonDetails(id:string) {
     }
   }
   sessionStorage.setItem('pokemonName',this.pokemonName);
+  sessionStorage.setItem('pokemonDetails', '');
   sessionStorage.setItem('pokemonDetails', JSON.stringify(pokemonDetails));
   sessionStorage.setItem('pokemonAbilities',this.pokemonAbilities);
   sessionStorage.setItem('sortOrder', this.SortDirection);

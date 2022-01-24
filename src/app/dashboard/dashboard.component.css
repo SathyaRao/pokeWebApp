@@ -1,0 +1,30 @@
+.center {
+    margin: auto;
+    width: 100%;
+    padding-left: 20%;
+  }
+
+  .header {
+      height: 6rem;
+      padding-right: 10%;
+  }
+
+  .background {
+      background-image: url(../../assets/background.jpg);
+      background-size: 50%;
+  }
+
+  .listStyle {
+      color: black;
+      font-size: 6rem;
+  }
+
+  .listStyle1 {
+    color: black;
+    font-size: 3rem;
+}
+
+.listStyle2 {
+    opacity: 95%;
+    width:auto;
+}
