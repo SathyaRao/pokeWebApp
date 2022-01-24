@@ -1,0 +1,53 @@
+<div class="card-wrapper ">
+
+    <mat-card class="example-card">
+    <mat-card-header class="header"
+    >
+      <img
+        src="../../assets/logo.jpg"
+        
+        />
+    </mat-card-header>
+    <mat-card-content class="col-md-12 background">
+      <mat-grid-list cols="10" rowHeight="100px" rowWidth="600px">
+        <mat-grid-tile
+            [colspan]="cols"
+            [rowspan]="6">
+            
+              <mat-list role="list">
+                
+              <img mat-card-image-lg  
+              src={{pokemonDetails.image}} alt={{pokemonDetails.name}} />
+            </mat-list>
+        </mat-grid-tile>
+        <mat-grid-tile
+            [colspan]="cols"
+            [rowspan]="5"
+            class="listStyle2"
+            [style.background-color]="pokemonDetails.type"> 
+            <mat-list class="listStyle2">
+                <mat-list-item><mat-card-title class="listStyle">{{pokemonDetails.name|uppercase}}</mat-card-title></mat-list-item>
+                <mat-list-item></mat-list-item>
+                <mat-list-item class="listStyle1">
+                  <H2>Height:&nbsp;</H2><H3>{{pokemonDetails.height}}' &nbsp; &nbsp; &nbsp;</H3> 
+                  <H2>Weight: &nbsp;</H2><H3>{{pokemonDetails.weight}} &nbsp;lbs</H3>
+                </mat-list-item>
+                <mat-list-item class="listStyle1"><H2>Abilities:&nbsp;</H2><H3>{{pokemonDetails.ability}}</H3>        
+                </mat-list-item>
+                <mat-list-item class="listStyle1"><H2>Moves:&nbsp;</H2><H3>{{pokemonDetails.topMoves}}</H3>        
+                </mat-list-item>
+                <mat-list-item class="listStyle1"><H2>Stats&nbsp;</H2></mat-list-item>
+                <mat-list-item>
+                    <mat-grid-list *ngFor="let stat of pokemonDetails.stats"
+                        [cols]="2"
+                        [rowHeight]="1">
+                        <mat-list-item><H3>{{stat.stat.name|uppercase}}</H3></mat-list-item>
+                        <mat-list-item><H3>{{stat.base_stat}}</H3></mat-list-item>
+                    </mat-grid-list>
+            </mat-list-item>
+              </mat-list>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+  </mat-card>
+</div>

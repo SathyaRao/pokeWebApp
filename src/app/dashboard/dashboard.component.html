@@ -1,0 +1,78 @@
+<div class="card-wrapper">
+
+    <mat-card class="example-card">
+      <mat-card-header>
+        <img
+          src="https://www.freakyjolly.com/wp-content/uploads/2021/07/cropped-cropped-fj-logo-192-removebg-preview-e1625997712615-1.png"
+          mat-card-avatar />
+        <mat-card-title>PokéDex</mat-card-title>
+        <mat-card-subtitle>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="col-md-12">
+        <mat-card-actions>
+          <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true"
+        (pageChange)="handlePageChange($event)"></pagination-controls>
+        </mat-card-actions>
+        <label>Filter By &nbsp; </label>
+        Name:<input [(ngModel)]='pokemonName'>
+        Abilities:<input [(ngModel)]='pokemonAbilities'>
+        <button type="button" (click)="onSearchFilter()">Search</button>
+        <button type="button" (click)="onSearchFilterClear()">Clear</button>
+
+        <label>Sort by &nbsp;</label>
+        <select [(ngModel)]='SortbyParam' (ngModelChange)="selectSortOption($event)">
+          <option value="name">Name</option>
+          <option value="height">Height</option>
+          <option value="weight">Weight</option>
+        </select>
+        <button type="button" (click)="onSortDirection()">
+          <i *ngIf="SortDirection==='asc'" class="fas fa-sort-alpha-down"></i>
+          <i *ngIf="SortDirection==='desc'" class="fas fa-sort-alpha-up"></i>
+        </button>
+        <mat-grid-list [cols]="10" rowHeight="100px" rowWidth="600px">
+          <mat-grid-tile
+              *ngFor="let pokemon of pokemonList|
+              sort:[SortbyParam,SortDirection]|
+              paginate : {
+                itemsPerPage: pageSize,
+                currentPage: page,
+                totalItems: count
+              };
+        let i = index"
+              [colspan]="cols"
+              [rowspan]="5"
+              [style.background-color]="pokemon.type">
+              <span (click)="pokemonDetails(pokemon.id)">
+                <mat-list role="list">
+                <img mat-card-image  
+                src={{pokemon.image}} alt={{pokemon.name}} />
+              
+                <mat-list-item><mat-card-title>{{pokemon.name|uppercase}}</mat-card-title></mat-list-item>
+                <mat-list-item>
+                  <H3>Height:&nbsp;</H3><H4>{{pokemon.height}}' &nbsp; &nbsp; &nbsp;</H4> 
+                  <H3>Weight: &nbsp;</H3><H4>{{pokemon.weight}} &nbsp;lbs</H4>
+                </mat-list-item>
+                <mat-list-item><H3>Abilities:&nbsp;</H3><H4>{{pokemon.ability}}</H4>        
+                </mat-list-item>
+              </mat-list>
+            </span>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-content>
+  
+      <mat-card-actions>
+        <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true"
+      (pageChange)="handlePageChange($event)"></pagination-controls>
+      </mat-card-actions>
+    </mat-card>
+    <div class="mt-3">
+      Items per Page:
+      <select (change)="handlePageSizeChange($event)">
+        <option *ngFor="let size of pageSizes" [ngValue]="size">
+          {{ size }}
+        </option>
+      </select>
+    </div>
+  </div>
+<router-outlet></router-outlet>
