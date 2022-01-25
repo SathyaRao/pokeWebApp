@@ -30,26 +30,4 @@ export class PokemonListService {
 
     return this.pokeList;
   }
- 
-  getImageService(url:string,length:number,index:number){
-    let pokemonDetails:any, abilities:any;
-   this.http.get<IPokemon>(url).subscribe((details:IPokemon)=>{
-    pokemonDetails = details;
-    //this.store.dispatch(PokemonAction());
-    pokemonDetails.image = details.sprites.other["official-artwork"].front_default;
-    abilities = details.abilities;
-    pokemonDetails.ability = "";
-    for(let i=0;i<abilities.length;i++){
-      pokemonDetails.ability += abilities[i].ability.name + ", ";
-    }
-    pokemonDetails.ability = pokemonDetails.ability.substring(0,pokemonDetails.ability.length-2);
-    let type = pokemonDetails.types[0].type.name;
-    pokemonDetails.type = Constants.type[type];
-    if((length - 1) == index){
-      this.pokeList = pokemonDetails;
-      this.pokemonList.emit(pokemonDetails);
-      this.list.next(pokemonDetails);
-    } 
-  })
-  }
 }
