@@ -23,11 +23,17 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
 ## Deployment Steps to Firebase
+
 Run `ng build --prod`
+
 Create Firebase Account
+
 Install Firebase cmd tools `npm install -g firebase-tools`
+
 Login to firebase account `firebase login`
+
 Initialize project `firebase init`
+
 Deploy app to firebase `firebase deploy`
 
 
