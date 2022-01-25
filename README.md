@@ -36,6 +36,25 @@ Initialize project `firebase init`
 
 Deploy app to firebase `firebase deploy`
 
+## Deployment Steps to Firebase
+
+Run `npm install eslint@7.32.0`
+
+Run `npx eslint --init`
+
+? How would you like to use ESLint? `To check syntax and find problems`
+
+? What type of modules does your project use? `JavaScript modules (import/export)`
+
+? Which framework does your project use? `None of these`
+
+? Does your project use TypeScript? `Yes`
+
+? Where does your code run? `Browser`
+
+? What format do you want your config file to be in? `JavaScript`
+
+Add rules in `.eslintrc.js`
 
 ## Further help
 
